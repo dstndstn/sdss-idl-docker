@@ -65,19 +65,8 @@ ENV PATH ${PATH}:/src/sdss/bin
 
 RUN svn export https://svn.sdss.org/public/repo/sdss/idlutils/tags/v5_5_33 /src/sdss/idlutils-v5_5_33
 
-#ADD idl85envi53sp1linux.x86_64.tar.gz /tmp
-#ADD in.txt /tmp
-#RUN cd /tmp && cat in.txt | ./install.sh
-
 ENV IDL_DIR /usr/local/idl/idl85
 ENV IDLUTILS_DIR /src/sdss/svn/idlutils/v5_5_33
-
-#ENV CFLAGS -I/usr/local/idl/idl85/external
-#ENV SDSS_CFLAGS -I/usr/local/idl/idl85/external
-#ENV X_CFLAGS -I/usr/local/idl/idl85/external
-# eg, idlutils/.../src/image/Makefile:
-# CFLAGS = $(SDSS_CFLAGS) -DCHECK_LEAKS -I$(INC)
-
 
 RUN . /usr/local/Modules/init/sh \
  && module use /src/sdss/github/modulefiles \
@@ -86,5 +75,40 @@ RUN . /usr/local/Modules/init/sh \
  && sdss_install --public -v sdss/idlutils v5_5_33 \
  && echo 2
 
-# 
-#sdss_install --public -v sdss/photoop v1_12_3
+RUN . /usr/local/Modules/init/sh \
+ && module use /src/sdss/github/modulefiles \
+ && module use /src/sdss/svn/modulefiles \
+ && module load sdss_install \
+ && sdss_install --public -v sdss/photoop v1_12_3
+
+RUN . /usr/local/Modules/init/sh \
+ && module use /src/sdss/github/modulefiles \
+ && module use /src/sdss/svn/modulefiles \
+ && module load sdss_install \
+ && sdss_install --public -v sdss/platedesign v5_1
+
+RUN . /usr/local/Modules/init/sh \
+ && module use /src/sdss/github/modulefiles \
+ && module use /src/sdss/svn/modulefiles \
+ && module load sdss_install \
+ && sdss_install --public -v data/sdss/catalogs/tycho2 v0_0
+
+#&& sdss_install --public -v data/sdss/platelist trunk \
+ 
+RUN apt install nano
+
+ENV SDSS4_PRODUCT_ROOT=/src/sdss
+
+RUN . /usr/local/Modules/init/sh \
+ && mkdir -p /src/sdss/modulefiles \
+ && module use /src/sdss/modulefiles \
+ && svn export https://svn.sdss.org/public/repo/sdss/sdss4tools/trunk/bin/sdss4bootstrap
+
+RUN . /usr/local/Modules/init/sh \
+ && ./sdss4bootstrap
+
+RUN . /usr/local/Modules/init/sh \
+ && module use /src/sdss/modulefiles \
+ && module load sdss4tools \
+ && sdss4install eboss/ebosstile v1_16
+ 
