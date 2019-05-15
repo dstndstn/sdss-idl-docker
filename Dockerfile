@@ -110,5 +110,34 @@ RUN . /usr/local/Modules/init/sh \
 RUN . /usr/local/Modules/init/sh \
  && module use /src/sdss/modulefiles \
  && module load sdss4tools \
- && sdss4install eboss/ebosstile v1_16
- 
+ && sdss4install --public -v sdss/platedesign trunk
+
+#ARG sdss_svn_user
+#ARG sdss_svn_pass
+
+RUN mkdir -p /root/.subversion/auth/svn.simple/
+COPY secret.txt /root/.subversion/auth/svn.simple/74f8b04305ec6bed8d8275f32bea2475
+
+ENV PATH $IDLUTILS_DIR/bin:$PATH
+ENV IDL_PATH=+$IDLUTILS_DIR/goddard/pro:+$IDLUTILS_DIR/pro:$IDL_PATH
+
+# apt install gcc-multilib
+
+RUN apt install -y gcc-multilib
+
+RUN mkdir -p /uufs/chpc.utah.edu/sys/pkg/idl/7.1/idl/external/ \
+ && ln -s $IDL_DIR/external/export.h /uufs/chpc.utah.edu/sys/pkg/idl/7.1/idl/external/
+
+RUN . /usr/local/Modules/init/sh \
+ && module use /src/sdss/modulefiles \
+ && module load sdss4tools \
+ && sdss4install -U dstn eboss/ebosstile v1_16
+
+# Holy crapballs, ebosstarget is big! (2.5 GB)
+# RUN . /usr/local/Modules/init/sh \
+#  && module use /src/sdss/modulefiles \
+#  && module load sdss4tools \
+#  && sdss4install -U dstn eboss/ebosstarget v9_1
+
+# ebosstilelist (48 GB!!)
+# sdss4install -U dstn eboss/ebosstilelist trunk
