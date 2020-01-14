@@ -1,0 +1,22 @@
+#%Module1.0
+proc ModulesHelp { } {
+    global product version
+    puts stderr "This module adds $product/$version to your environment."
+}
+#
+# Define variables
+#
+set product tycho2
+set version trunk
+set installdir /src/sdss
+
+#
+# module-whatis
+#
+module-whatis "Sets up $product/$version in your environment."
+#
+# Set environment
+#
+set PRODUCT_DIR $installdir/$product/$version
+setenv [string toupper $product]_DIR $PRODUCT_DIR
+prepend-path PATH $PRODUCT_DIR
