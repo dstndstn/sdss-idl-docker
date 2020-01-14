@@ -1,0 +1,31 @@
+#%Module1.0
+#
+# Module file created by upstable.py
+# based on /uufs/chpc.utah.edu/common/home/sdss09/software/eboss/modulefiles/photoop/yannytools-v1_5/ups/yannytools.table.
+#
+proc ModulesHelp { } {
+    global product version
+    puts stderr "This module adds $product/$version to your environment."
+}
+#
+# Define variables
+#
+set product yannytools
+set version v1_5
+#
+# This prevents other versions of this product being loaded simultaneously
+#
+conflict $product
+#
+# module-whatis
+#
+module-whatis "Sets up $product/$version in your environment."
+
+#
+# Set environment
+#
+set PRODUCT_DIR /src/sdss/$product/$version
+setenv [string toupper $product]_DIR $PRODUCT_DIR
+prepend-path PATH $PRODUCT_DIR/bin
+prepend-path PERL5LIB $PRODUCT_DIR/perl5
+prepend-path PYTHONPATH $PRODUCT_DIR/python

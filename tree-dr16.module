@@ -1,0 +1,121 @@
+#%Module1.0
+proc ModulesHelp { } {
+    global product version
+    puts stderr "This module adds $product/$version to various paths"
+}
+set name tree
+set product tree
+set version dr16
+conflict $product
+module-whatis "Sets up $product/$version in your environment"
+
+set PRODUCT_DIR /uufs/chpc.utah.edu/common/home/sdss10/software/sdss/github/tree/master
+setenv [string toupper $product]_DIR $PRODUCT_DIR
+setenv [string toupper $product]_VER $version
+prepend-path PATH $PRODUCT_DIR/bin
+prepend-path PYTHONPATH $PRODUCT_DIR/python
+#
+# general
+#
+setenv SAS_BASE_DIR /uufs/chpc.utah.edu/common/home/sdss
+setenv SAS_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16
+setenv CAS_LOAD /uufs/chpc.utah.edu/common/home/sdss/dr16/casload
+#
+# APO
+#
+setenv APO_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16/apo
+setenv APOLOGS_DIR /uufs/chpc.utah.edu/common/home/sdss/dr16/apo/logs
+setenv ECAM_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/apo/ecam
+setenv GCAM_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/apo/gcam
+setenv IRCAM_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/apo/ircam
+setenv MAPPER_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/apo/mapper
+setenv APO_SPECTRO_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/apo/spectro
+#
+# LCO 
+#
+setenv LCO_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16/lco
+setenv BCAM_DATA_2S /uufs/chpc.utah.edu/common/home/sdss/dr16/lco/bcam
+setenv ECAM_DATA_2S /uufs/chpc.utah.edu/common/home/sdss/dr16/lco/ecam
+setenv GCAM_DATA_2S /uufs/chpc.utah.edu/common/home/sdss/dr16/lco/gcam
+setenv MAPPER_DATA_2S /uufs/chpc.utah.edu/common/home/sdss/dr16/lco/mapper
+#
+# EBOSS
+#
+setenv EBOSS_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss
+setenv EBOSS_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/target
+setenv EBOSS_ELG /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/elg
+setenv EBOSS_FIREFLY /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/spectro/firefly
+setenv EBOSS_LYA /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/lya
+setenv EBOSS_SPECTRO_LENSING /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/spectro/lensing
+setenv BOSS_LSS_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/lss
+setenv BOSS_PHOTOOBJ /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/photoObj
+setenv BOSS_QSO /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/qso
+setenv BOSS_SPECTRO_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/spectro/data
+setenv BOSS_SPECTRO_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/spectro/redux
+setenv BOSS_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/boss_target
+setenv PHOTO_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/photo/data
+setenv PHOTO_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/photo/redux
+setenv PHOTO_SKY /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/photo/sky
+setenv PHOTO_CALIB /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/calib/dr13_final
+setenv PHOTO_RESOLVE /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/resolve/2013-07-29
+setenv PHOTO_SWEEP /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/sweeps/dr13_final
+setenv PHOTOPLATE_DIR /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/photoObj/plates/2013-07-29
+setenv REDMONSTER_SPECTRO_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/spectro/redux/redmonster
+setenv SPIDERS_ANALYSIS /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/spiders/analysis
+setenv SPIDERS_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/eboss/spiders/target
+#
+# SDSS
+#
+setenv SDSS_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss
+setenv RAWDATA_DIR /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/spectro/data
+setenv SPECTRO_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/spectro/redux
+setenv SPECTRO_MATCH /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/spectro/plates
+setenv SDSS_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/target
+setenv SDSS_TILING /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/tiling
+setenv SEGUE_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/segue1/target
+setenv SSPP_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/sspp
+setenv SEGUE2_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/segue2/target
+setenv SEGUE2_TARGET_ALL /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/segue2/targetAll
+setenv ATLAS_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/sdss/atlas
+#
+# APOGEE
+#
+setenv APOGEE_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee
+setenv APOGEE_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/spectro/data
+setenv APOGEE_DATA_1M /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/spectro/data1m
+setenv APOGEE_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/spectro/redux
+setenv APOGEE_ASPCAP /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/spectro/aspcap
+setenv APOGEE_SPECLIB /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/spectro/speclib
+setenv APOGEE_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/target
+setenv APOGEE_DISTANCES /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-distances
+setenv APOGEE_GRAVPOT16 /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-gravpot16
+setenv APOGEE_OCCAM /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-occam
+setenv APOGEE_RC /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-rc
+setenv APOGEE_TGAS /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-tgas
+setenv APOGEE_ASTRO_NN /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-astronn
+setenv APOGEE_STARHORSE /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-starhorse
+setenv APOGEE_THEJOKER /uufs/chpc.utah.edu/common/home/sdss/dr16/apogee/vac/apogee-thejoker
+#
+# MANGA
+#
+setenv MANGA_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16/manga
+setenv MANGA_FIREFLY /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/firefly
+setenv MANGA_PIPE3D /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/pipe3d
+setenv MANGA_GEMA /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/gema
+setenv MANGA_HI /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/HI
+setenv MANGA_MORPHOLOGY /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/morphology
+setenv MANGA_PCA  /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/mangapca
+setenv MANGA_PHOTO /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/photo
+setenv MANGA_SPECTRO_ANALYSIS /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/analysis
+setenv MANGA_SPECTRO_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/data
+setenv MANGA_SPECTRO_MASTAR /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/mastar
+setenv MANGA_SPECTRO_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/redux
+setenv MANGA_SPECZ /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/spectro/specz
+setenv MANGA_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/manga/target
+#
+# MARVELS
+#
+setenv MARVELS_ROOT /uufs/chpc.utah.edu/common/home/sdss/dr16/marvels
+setenv MARVELS_DATA /uufs/chpc.utah.edu/common/home/sdss/dr16/marvels/spectro/data
+setenv MARVELS_REDUX /uufs/chpc.utah.edu/common/home/sdss/dr16/marvels/spectro/redux
+setenv MARVELS_TARGET /uufs/chpc.utah.edu/common/home/sdss/dr16/marvels/target
